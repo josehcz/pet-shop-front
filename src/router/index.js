@@ -3,6 +3,14 @@ import HomeView from '../views/HomeView.vue'
 
 const routes = [
   {
+    path: '/login',
+    name: 'login',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/LoginView.vue')
+  },
+  {
     path: '/',
     name: 'home',
     component: HomeView
@@ -18,6 +26,16 @@ const routes = [
     component: () => import( '../views/cadastraFuncView.vue')
   },
   {
+    path: '/registraProd',
+    name: 'RegistraProd',
+    component: () => import( '../views/RegistraProdutoView.vue')
+  },
+  {
+    path: '/venda',
+    name: 'Venda',
+    component: () => import( '../views/vendaView.vue')
+  },
+  {
     path: '/cadastraCliente',
     name: 'CadastraCliente',
     component: () => import( '../views/cadastraClienteView.vue')
@@ -31,14 +49,6 @@ const routes = [
     path: '/funcionario',
     name: 'Funcionario',
     component: () => import( '../views/funcionarioView.vue')
-  },
-  {
-    path: '/login',
-    name: 'login',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/LoginView.vue')
   }
 ]
 

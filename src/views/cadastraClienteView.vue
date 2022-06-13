@@ -6,8 +6,8 @@
       <input type="text" id="username" required autofocus v-model="nome">
     </p>
     <p>
-      <label for="inputPassword">Pet</label>
-      <input type="text" id="inputPassword" required autofocus v-model="pet">
+      <label for="text">Pet</label>
+      <input type="text" id="text" required autofocus v-model="pet">
     </p>
     <button type="submit">Cadastrar Cliente</button>
 </form>

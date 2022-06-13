@@ -11,6 +11,7 @@
     </p>
     <button type="submit">OK</button>
   </form>
+
 </template>
 
 
@@ -20,13 +21,6 @@ import axios from 'axios';
 import { mapMutations } from 'vuex';
 
 export default {
-  name: 'HomeView',
-  data() {
-    return {
-      nome: '',
-      senha: ''
-    }
-  },
   methods: {
     ...mapMutations([
       'setUsuario',
@@ -45,20 +39,20 @@ export default {
         }
       });
     },
-    sucesso(res) {
-      let AAAAAAAA = res.data.username;
+    sucesso(res) {     
+      let temp = res.data.username
       localStorage.setItem("Authorization", res.data.token);
-      console.log(res);
-      axios.get('/usuario?nome='+res.data.username,
+      axios.get('/usuario',
        {headers: {"Content-Type": 'application/json', "Authorization":res.data.token}})
       .then(res => {
-        for (let i in res.data){
-          if (res.data[i].nome === AAAAAAAA){
-            if (res.data[i].autorizacoes[0].nome === 'ROLE_ADMIN'){
+        for (let i of res.data){
+          if (i.nome === temp){
+            if (i.autorizacoes[0].nome === 'ROLE_ADMIN'){
               router.push('/admin')
             }
-            else if (res.data[i].autorizacoes[0].nome === 'ROLE_FUNCIONARIO')
-            router.push('/funcionario')
+            else if (i.autorizacoes[0].nome === 'ROLE_FUNCIONARIO'){
+              router.push('/funcionario')
+            }
           }
         }
       })
